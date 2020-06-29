@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <%- include("partials/head") %> 
+  <body> 
+    <%- include("partials/header") %>
+
+        <h1>Listado de Peliculas</h1>
+        
+        <ul>
+            <% for( let pelicula of peliculas) { %>
+                <li>
+                    <a href="/peliculas/<%= pelicula.id %> ">
+                        <%= pelicula.title %>
+                    </a>
+                </li>
+            <% } %>
+        </ul>
+
+    <%- include("partials/footer") %>
+  </body>
+</html>

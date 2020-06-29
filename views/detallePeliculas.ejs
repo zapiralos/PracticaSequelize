@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <%- include("partials/head") %> 
+  <body> 
+    <%- include("partials/header") %>
+
+        <h1> <%= peliculas.title %> </h1>
+        
+        <ul>
+                <li>
+                    Duración: <%= peliculas.length %>
+                </li>
+                <li>
+                    Fecha de estreno: <%= peliculas.release_date %>
+                </li>
+                <li>
+                    Premios: <%= peliculas.awards %>
+                </li>
+                <li>
+                    Rating: <%= peliculas.rating %>
+                </li>
+                <li>
+                    Genero: <%= peliculas.genero.name %>
+                </li>
+                <li>
+                    Actores: 
+                    <ul>
+                        <% for (const actor of peliculas.actores) { %>
+                           <li>
+                            <%= actor.first_name %> <%= actor.last_name %>
+                            </li>
+                      <%  } %> 
+                    </ul>
+                </li>
+        </ul>
+        <a href="/peliculas/editar/<%= peliculas.id %> ">
+            <button type="submit" class="btn btn-outline-info mb-5">editar</button>
+        </a> 
+
+    <%- include("partials/footer") %>
+  </body>
+</html>

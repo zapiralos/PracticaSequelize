@@ -15,6 +15,12 @@ router.get("/:id", peliculasController.detalle);
 
 //editar
 router.get("/editar/:id", peliculasController.editar);
+router.post("/editar/:id", peliculasController.actualizar);
+
+//borrar
+router.post("/borrar/:id", peliculasController.borrar);
+
+
 
 
 module.exports = router;

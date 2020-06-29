@@ -36,15 +36,39 @@ let peliculasController = {
     
     editar: async (req, res) => {
         // se llama los datos de peliculas a modificar
-        const peliculas = Pelicula.findByPk(req.params.id);
+        const peliculas = await Pelicula.findByPk(req.params.id);
 
         // se llama los a los generos posibles a modificar
-        const generos = Genero.findAll();
-
-            await Promise.all([peliculas, generos])  
+        const generos = await Genero.findAll();
 
             res.render("editarPelicula", { peliculas , generos });
-    },    
+    },  
+    
+    actualizar: async (req, res) => {
+        await Pelicula.update({
+            title: req.body.titulo,
+            awards: req.body.premios,
+            length: req.body.length,
+            rating: req.body.rating,
+            release_date: req.body.release_date,
+            genre_id: req.body.genero
+        },{
+            where: {
+                id: req.params.id
+            }
+        });
+            res.redirect("/peliculas/" + req.params.id);
+        },
+
+        borrar: async (req, res) => {
+            
+            await Pelicula.destroy({
+                where: {
+                    id: req.params.id
+                }
+            });
+            res.redirect("/peliculas");
+        },  
 
 }
 
